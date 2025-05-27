@@ -5,13 +5,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentMapper {
-    public Student toStudent(StudentDTO studentDTO) {
+    public Student toStudent(StudentDTO dto) {
+        if(dto == null) {
+            throw new NullPointerException("StudentDTO cannot be NULL");
+        }
+
         var student = new Student();
-        student.setFirstName(studentDTO.firstName());
-        student.setLastName(studentDTO.lastName());
-        student.setEmail(studentDTO.email());
+        student.setFirstName(dto.firstName());
+        student.setLastName(dto.lastName());
+        student.setEmail(dto.email());
         var school = new School();
-        school.setId(studentDTO.schoolId());
+        school.setId(dto.schoolId());
         student.setSchool(school);
         return student;
     }

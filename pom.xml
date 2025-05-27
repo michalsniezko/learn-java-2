@@ -11,8 +11,8 @@
 	<groupId>com.michalsniezko</groupId>
 	<artifactId>schoolapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>learning-java-project-two</name>
-	<description>Demo project for Spring Boot</description>
+	<name>locations</name>
+	<description>Locations API</description>
 	<url/>
 	<licenses>
 		<license/>
