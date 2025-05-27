@@ -99,6 +99,27 @@ class StudentServiceTest {
         assertEquals(actualDTO.lastName(), expectedDTO.lastName());
     }
 
+    public void shouldFindStudentByName() {
+        //given
+        Student student = getStudent();
+
+        List<Student> students = new ArrayList<>();
+        students.add(student);
+
+        String nameFragment = "John";
+
+        //mock the calls
+        when(studentRepository.findAllByFirstNameContaining(nameFragment)).thenReturn(students);
+        StudentResponseDTO responseDTO = new StudentResponseDTO(
+                "John", "Doe", "john@mail.com");
+        when(studentMapper.toStudentResponseDTO(any(Student.class))).thenReturn(responseDTO);
+
+        var responseDTOList = studentService.findAllByFirstNameContaining(nameFragment);
+
+        assertEquals(students.size(), responseDTOList.size());
+        verify(studentRepository, times(1)).findAllByFirstNameContaining(nameFragment);
+    }
+
     private static Student getStudent() {
         Student student = new Student();
         student.setFirstName("John");
